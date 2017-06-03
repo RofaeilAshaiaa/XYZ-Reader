@@ -6,7 +6,8 @@
     android:clickable="true"
     android:elevation="5dp"
     android:focusable="true"
-    android:foreground="?selectableItemBackground">
+    android:foreground="?selectableItemBackground"
+    app:cardCornerRadius="5dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

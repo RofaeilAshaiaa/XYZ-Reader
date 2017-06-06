@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.graphics.Palette;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.text.method.LinkMovementMethod;
@@ -24,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
+import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,6 +43,7 @@ public class ArticleDetailFragment extends Fragment implements
     private static final String TAG = "ArticleDetailFragment";
     private static final float PARALLAX_FACTOR = 1.25f;
 
+    private ArticleDetailActivity articleDetailActivity;
     private Cursor mCursor;
     private long mItemId;
     private View mRootView;
@@ -95,6 +98,7 @@ public class ArticleDetailFragment extends Fragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        articleDetailActivity = (ArticleDetailActivity) getActivity();
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             mItemId = getArguments().getLong(ARG_ITEM_ID);
@@ -159,6 +163,14 @@ public class ArticleDetailFragment extends Fragment implements
                         .getIntent(), getString(R.string.action_share)));
             }
         });
+
+
+        Toolbar toolbar = (Toolbar) mRootView.findViewById(R.id.toolbar_details_fragment);
+        articleDetailActivity.setSupportActionBar(toolbar);
+        if (null != articleDetailActivity.getSupportActionBar()) {
+            articleDetailActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            articleDetailActivity.getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         bindViews();
 //        updateStatusBar();
@@ -242,7 +254,13 @@ public class ArticleDetailFragment extends Fragment implements
                                 Palette p = Palette.generate(bitmap, 12);
                                 mMutedColor = p.getDarkMutedColor(0xFF333333);
                                 // TODO: assign bitmap to the image view here
-                                mPhotoView.setImageBitmap(imageContainer.getBitmap());
+
+//                                mPhotoView.setImageBitmap(imageContainer.getBitmap());
+
+                                Picasso.with(getActivity())
+                                        .load(mCursor.getString(ArticleLoader.Query.PHOTO_URL))
+                                        .placeholder(getResources().getDrawable(R.drawable.ic_autorenew_black_24dp))
+                                        .into(mPhotoView);
                                 mRootView.findViewById(R.id.meta_bar)
                                         .setBackgroundColor(mMutedColor);
 //                                updateStatusBar();

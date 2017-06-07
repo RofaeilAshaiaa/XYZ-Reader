@@ -116,6 +116,7 @@
         android:contentDescription="@string/action_share"
         android:src="@drawable/ic_share"
         app:elevation="6dp"
-        app:fabSize="normal" />
+        app:fabSize="normal"
+        app:layout_behavior="com.example.xyzreader.ui.FAB_Hide_on_Scroll" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -4,10 +4,10 @@
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     android:clickable="true"
-    android:elevation="5dp"
     android:focusable="true"
     android:foreground="?selectableItemBackground"
-    app:cardCornerRadius="5dp">
+    app:cardCornerRadius="5dp"
+    app:elevation="2dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

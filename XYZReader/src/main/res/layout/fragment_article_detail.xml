@@ -33,6 +33,7 @@
                 android:id="@+id/toolbar_details_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
+                app:elevation="4dp"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
                 app:title=" "></android.support.v7.widget.Toolbar>
@@ -114,6 +115,7 @@
         android:layout_marginRight="@dimen/fab_margin"
         android:contentDescription="@string/action_share"
         android:src="@drawable/ic_share"
+        app:elevation="6dp"
         app:fabSize="normal" />
 
 </android.support.design.widget.CoordinatorLayout>

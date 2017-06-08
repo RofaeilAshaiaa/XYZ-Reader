@@ -1,5 +1,9 @@
 package com.example.xyzreader.ui;
 
+/**
+ * reference: https://www.sitepoint.com/animating-android-floating-action-button/
+ */
+
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;

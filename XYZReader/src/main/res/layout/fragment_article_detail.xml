@@ -36,22 +36,8 @@
                 android:layout_height="?actionBarSize"
                 app:elevation="4dp"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-                app:title=" ">
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
 
-                <TextView
-                    android:id="@+id/article_title"
-                    style="@style/TextAppearance.AppCompat.Title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="serif"
-                    android:lineSpacingMultiplier="0.9"
-                    android:maxLines="1"
-                    android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/detail_title_text_size"
-                    android:textStyle="bold"
-                    tools:text="@string/app_name" />
             </android.support.v7.widget.Toolbar>
 
 
@@ -83,6 +69,21 @@
                 android:paddingLeft="@dimen/detail_inner_horiz_margin"
                 android:paddingRight="@dimen/detail_inner_horiz_margin"
                 android:paddingTop="@dimen/detail_metabar_vert_padding">
+
+
+                <!--<TextView-->
+                <!--android:id="@+id/article_title"-->
+                <!--style="@style/TextAppearance.AppCompat.Title"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:fontFamily="serif"-->
+                <!--android:lineSpacingMultiplier="0.9"-->
+                <!--android:maxLines="1"-->
+                <!--android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"-->
+                <!--android:textColor="#fff"-->
+                <!--android:textSize="@dimen/detail_title_text_size"-->
+                <!--android:textStyle="bold"-->
+                <!--tools:text="@string/app_name" />-->
 
 
                 <TextView

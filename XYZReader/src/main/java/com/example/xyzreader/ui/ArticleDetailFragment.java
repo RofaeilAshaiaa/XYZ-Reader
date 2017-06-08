@@ -41,13 +41,14 @@ public class ArticleDetailFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<Cursor> {
     public static final String ARG_ITEM_ID = "item_id";
     private static final String TAG = "ArticleDetailFragment";
+    boolean setted = false;
     private ArticleDetailActivity articleDetailActivity;
     private Cursor mCursor;
     private long mItemId;
+    private Toolbar toolbar;
     private View mRootView;
     private int mMutedColor = 0xFF333333;
     private ImageView mPhotoView;
-
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss");
     // Use default locale format
     private SimpleDateFormat outputFormat = new SimpleDateFormat();
@@ -109,7 +110,7 @@ public class ArticleDetailFragment extends Fragment implements
         });
 
 
-        Toolbar toolbar = (Toolbar) mRootView.findViewById(R.id.toolbar_details_fragment);
+        toolbar = (Toolbar) mRootView.findViewById(R.id.toolbar_details_fragment);
         articleDetailActivity.setSupportActionBar(toolbar);
         if (null != articleDetailActivity.getSupportActionBar()) {
             articleDetailActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -138,7 +139,7 @@ public class ArticleDetailFragment extends Fragment implements
             return;
         }
 
-        TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
+//        TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
@@ -150,7 +151,11 @@ public class ArticleDetailFragment extends Fragment implements
             mRootView.setAlpha(0);
             mRootView.setVisibility(View.VISIBLE);
             mRootView.animate().alpha(1);
-            titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
+//            titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
+            if (!setted) {
+                toolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+                setted = true;
+            }
             Date publishedDate = parsePublishedDate();
             if (!publishedDate.before(START_OF_EPOCH.getTime())) {
                 bylineView.setText(Html.fromHtml(
@@ -196,7 +201,8 @@ public class ArticleDetailFragment extends Fragment implements
                     });
         } else {
             mRootView.setVisibility(View.GONE);
-            titleView.setText("N/A");
+//            titleView.setText("N/A");
+            toolbar.setTitle("N/A");
             bylineView.setText("N/A");
             bodyView.setText("N/A");
         }

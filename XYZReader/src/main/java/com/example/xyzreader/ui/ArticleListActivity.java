@@ -17,14 +17,12 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
 import com.example.xyzreader.data.ItemsContract;
 import com.example.xyzreader.data.UpdaterService;
-import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -118,13 +116,16 @@ public class ArticleListActivity extends AppCompatActivity implements
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView thumbnailView;
+        //        public ImageView thumbnailView;
+        public DynamicHeightNetworkImageView thumbnailView;
+
         public TextView titleView;
         public TextView subtitleView;
 
         public ViewHolder(View view) {
             super(view);
-            thumbnailView = (ImageView) view.findViewById(R.id.thumbnail);
+//            thumbnailView = (ImageView) view.findViewById(R.id.thumbnail);
+            thumbnailView = (DynamicHeightNetworkImageView) view.findViewById(R.id.thumbnail);
             titleView = (TextView) view.findViewById(R.id.article_title);
             subtitleView = (TextView) view.findViewById(R.id.article_subtitle);
         }
@@ -193,10 +194,14 @@ public class ArticleListActivity extends AppCompatActivity implements
                                 + "<br/>" + " by "
                                 + mCursor.getString(ArticleLoader.Query.AUTHOR)));
             }
-            Picasso.with(mContext)
-                    .load(mCursor.getString(ArticleLoader.Query.THUMB_URL))
-                    .placeholder(getResources().getDrawable(R.drawable.ic_autorenew_black_24dp))
-                    .into(holder.thumbnailView);
+//            Picasso.with(mContext)
+//                    .load(mCursor.getString(ArticleLoader.Query.THUMB_URL))
+//                    .placeholder(getResources().getDrawable(R.drawable.ic_autorenew_black_24dp))
+//                    .into(holder.thumbnailView);
+            holder.thumbnailView.setImageUrl(
+                    mCursor.getString(ArticleLoader.Query.THUMB_URL),
+                    ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
+            holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
         }
 
         @Override
